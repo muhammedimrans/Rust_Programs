@@ -421,21 +421,5 @@ For any data type in Rust, to see what methods it can perform, visit the [offici
 
 ---
 
-=
-Paste this into your README or documentation page for a clean, informative reference on Rust data types and their methods! Let me know if you want additional formatting or content.
-
-## ✅ Summary
-
-This program is a practical walkthrough of:
-
-- Basic I/O
-- Variables & Types
-- Arithmetic & Logic
-- Strings, Characters
-- Arrays & Tuples
-- Ranges & Loops
-- Formatting, Debugging, and Type Casting
-
----
 
 Copy and paste this into your `README.md` file for a well-structured and informative documentation! If you want additional formatting or sections, let me know!
