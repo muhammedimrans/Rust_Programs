@@ -12,7 +12,7 @@ This document explains each line of a simple Rust program, demonstrating core Ru
 ## 🔧 Program Entry and Attributes
 
 ```rust
-#![allow(unused_variables)]
+#![allow(unused_variables, dead_code, warnings)]
 fn main() {
     // ... your code here ...
 }
