@@ -162,6 +162,410 @@ fn main() {
 }
 ```
 
-If you'd like, I can also:
-- Remove or update the original `Datatype1.md` file to indicate it was renamed, or
-- Create a git branch and push the rename as a commit that deletes the old file and adds the new one (requires confirmation).
+---
+
+## Detailed String Methods Examples
+
+### 1. trim()
+
+Removes whitespace from the beginning and end of a string.
+
+```rust
+fn main() {
+    let text = "   Hello Rust   ";
+
+    let result = text.trim();
+
+    println!("Before: '{text}'");
+    println!("After: '{result}'");
+}
+```
+
+Output:
+
+```
+Before: '   Hello Rust   '
+After: 'Hello Rust'
+```
+
+**Important:** `trim()` doesn't modify the original String. It returns a trimmed view (`&str`).
+
+### 2. .to_uppercase()
+
+Converts letters to uppercase.
+
+```rust
+fn main() {
+    let text = "hello rust";
+
+    let result = text.to_uppercase();
+
+    println!("{result}");
+}
+```
+
+Output:
+
+```
+HELLO RUST
+```
+
+### 3. .to_lowercase()
+
+Converts letters to lowercase.
+
+```rust
+fn main() {
+    let text = "HELLO RUST";
+
+    let result = text.to_lowercase();
+
+    println!("{result}");
+}
+```
+
+Output:
+
+```
+hello rust
+```
+
+You can combine them:
+
+```rust
+fn main() {
+    let text = "Hello Rust";
+
+    println!("{}", text.to_uppercase());
+    println!("{}", text.to_lowercase());
+}
+```
+
+### 4. .contains()
+
+Checks whether a string contains another string.
+
+```rust
+fn main() {
+    let text = "I am learning Rust";
+
+    let result = text.contains("Rust");
+
+    println!("Contains Rust? {result}");
+}
+```
+
+Output:
+
+```
+Contains Rust? true
+```
+
+If you search for something that doesn't exist:
+
+```rust
+let result = text.contains("Python");
+```
+
+Output:
+
+```
+false
+```
+
+**The important thing is:**
+
+`contains()` returns a boolean: `true` or `false`
+
+### 5. .starts_with()
+
+Checks whether the string starts with specific text.
+
+```rust
+fn main() {
+    let text = "Hello Rust";
+
+    let result = text.starts_with("Hello");
+
+    println!("Starts with Hello? {result}");
+}
+```
+
+Output:
+
+```
+Starts with Hello? true
+```
+
+For example:
+
+```rust
+text.starts_with("Rust")
+```
+
+would return:
+
+```
+false
+```
+
+### 6. .ends_with()
+
+Checks whether the string ends with specific text.
+
+```rust
+fn main() {
+    let text = "Hello Rust";
+
+    let result = text.ends_with("Rust");
+
+    println!("Ends with Rust? {result}");
+}
+```
+
+Output:
+
+```
+Ends with Rust? true
+```
+
+### 7. .replace()
+
+Replaces text with other text.
+
+```rust
+fn main() {
+    let text = "I like Python";
+
+    let result = text.replace("Python", "Rust");
+
+    println!("{result}");
+}
+```
+
+Output:
+
+```
+I like Rust
+```
+
+Notice that the original text is unchanged:
+
+```rust
+fn main() {
+    let text = "I like Python";
+
+    let result = text.replace("Python", "Rust");
+
+    println!("Original: {text}");
+    println!("New: {result}");
+}
+```
+
+Output:
+
+```
+Original: I like Python
+New: I like Rust
+```
+
+So: `replace()` creates a new String
+
+### 8. .len()
+
+Returns the length in bytes.
+
+```rust
+fn main() {
+    let text = "Hello";
+
+    let length = text.len();
+
+    println!("Length: {length}");
+}
+```
+
+Output:
+
+```
+Length: 5
+```
+
+Each character in "Hello" is one byte, so:
+
+```
+H e l l o
+1 1 1 1 1 = 5 bytes
+```
+
+**Important with Unicode**
+
+```rust
+fn main() {
+    let text = "你好";
+
+    println!("Bytes: {}", text.len());
+    println!("Characters: {}", text.chars().count());
+}
+```
+
+The output will be:
+
+```
+Bytes: 6
+Characters: 2
+```
+
+So remember:
+
+```
+text.len()           // bytes
+text.chars().count() // characters
+```
+
+### 9. .is_empty()
+
+Checks whether a string contains nothing.
+
+```rust
+fn main() {
+    let text = "";
+
+    let result = text.is_empty();
+
+    println!("Is empty? {result}");
+}
+```
+
+Output:
+
+```
+Is empty? true
+```
+
+With text:
+
+```rust
+fn main() {
+    let text = "Hello";
+
+    println!("Is empty? {}", text.is_empty());
+}
+```
+
+Output:
+
+```
+Is empty? false
+```
+
+This is commonly useful in if statements:
+
+```rust
+fn main() {
+    let text = "";
+
+    if text.is_empty() {
+        println!("No text was provided");
+    } else {
+        println!("Text was provided");
+    }
+}
+```
+
+### 10. .split()
+
+This one is slightly different.
+
+`split()` breaks a string into multiple pieces.
+
+For example:
+
+```rust
+fn main() {
+    let text = "apple,banana,orange";
+
+    for fruit in text.split(",") {
+        println!("{fruit}");
+    }
+}
+```
+
+Output:
+
+```
+apple
+banana
+orange
+```
+
+Here's what's happening:
+
+```
+"apple,banana,orange"
+       ↓ split(",")
+       
+"apple"   "banana"   "orange"
+```
+
+`split()` returns an iterator, which is why we commonly use it with a for loop.
+
+You can also collect the pieces:
+
+```rust
+fn main() {
+    let text = "apple,banana,orange";
+
+    let fruits: Vec<&str> = text.split(",").collect();
+
+    println!("{fruits:?}");
+}
+```
+
+Output:
+
+```
+["apple", "banana", "orange"]
+```
+
+### Quick cheat sheet
+
+| Method | What it does | Returns |
+|--------|------------|---------|
+| trim() | Removes beginning/end whitespace | &str |
+| to_uppercase() | Converts to uppercase | String |
+| to_lowercase() | Converts to lowercase | String |
+| contains() | Checks if text exists | bool |
+| starts_with() | Checks beginning | bool |
+| ends_with() | Checks ending | bool |
+| replace() | Replaces text | String |
+| len() | Gets byte length | usize |
+| is_empty() | Checks if empty | bool |
+| split() | Splits text | iterator |
+
+### One thing I recommend remembering
+
+The methods fall into a few groups:
+
+**Modify/produce text:**
+- trim()
+- to_uppercase()
+- to_lowercase()
+- replace()
+
+**Ask a question about text:**
+- contains()
+- starts_with()
+- ends_with()
+- is_empty()
+
+These return `true`/`false`.
+
+**Get information from text:**
+- len()
+- chars().count()
+
+**Break text apart:**
+- split()
+
+Once you understand these groups, Rust's string methods become much easier to remember.
