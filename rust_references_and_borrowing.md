@@ -23,8 +23,6 @@ Reference
 borrows the data temporarily
 ```
 
-The Rust Book describes a reference as a way to access data owned by another variable without taking ownership. fileciteturn0file0L3-L5
-
 ---
 
 # 1. Why Do We Need References?
@@ -48,8 +46,6 @@ fn print_name(name: String) {
 This causes an ownership problem because the `String` is moved into `print_name`.
 
 The function receives ownership of the String, so the original `name` cannot be used afterward.
-
-The Rust Book explains this as the String being moved into the function. fileciteturn0file0L3-L5
 
 ---
 
@@ -93,8 +89,6 @@ fn print_name(name: &String)
 The `&` means:
 
 > "Borrow this value. Don't take ownership."
-
-This is the purpose of references described in the source. fileciteturn0file0L18-L23
 
 ---
 
@@ -151,8 +145,6 @@ as:
 It does not own the String.
 
 It can access the String owned by someone else.
-
-The source explains that `&s1` creates a reference and `&String` tells the function parameter to expect a reference. fileciteturn0file0L23-L23
 
 ---
 
@@ -239,8 +231,6 @@ original String
 still exists
 ```
 
-The String is not dropped because the reference did not own it. fileciteturn0file0L45-L51
-
 ---
 
 # 8. What Is Borrowing?
@@ -262,8 +252,6 @@ Here:
 means:
 
 > Borrow `name`.
-
-The source describes borrowing using the same real-world idea: you can borrow something from its owner without becoming the owner. fileciteturn0file0L51-L53
 
 ---
 
@@ -296,8 +284,6 @@ Because:
 is an immutable reference.
 
 It allows reading, but not changing.
-
-The source shows this situation and explains compiler error `E0596`. fileciteturn0file0L55-L94
 
 ---
 
@@ -345,7 +331,6 @@ fn add_surname(name: &mut String)
 
 The function accepts a mutable reference.
 
-The source uses the same three changes in its mutable-reference example. fileciteturn0file0L98-L114
 
 ---
 
@@ -415,8 +400,6 @@ fn main() {
 
 Rust reports error `E0499`.
 
-The source explains that the first mutable borrow is still active when the second one is created. fileciteturn0file0L116-L151
-
 ---
 
 # 13. Why Does Rust Have This Rule?
@@ -433,8 +416,6 @@ Student B → changes answer
 Rust prevents this kind of unsafe access.
 
 Only one mutable reference can control the data at a time.
-
-This helps Rust prevent **data races** at compile time. fileciteturn0file0L151-L159
 
 ---
 
@@ -468,8 +449,6 @@ number ──────┤
 
 Multiple readers are safe.
 
-The source confirms that multiple immutable references are allowed because they cannot modify the data. fileciteturn0file0L209-L211
-
 ---
 
 # 15. You Cannot Mix Active Immutable and Mutable References
@@ -499,8 +478,6 @@ third  → wants to change
 
 Rust does not allow a mutable reference while immutable references to the same value are still active.
 
-This is error `E0502`. fileciteturn0file0L174-L209
-
 ---
 
 # 16. References Can Stop Being Used
@@ -529,8 +506,6 @@ fn main() {
 The immutable references are finished being used after the first `println!`.
 
 Then Rust allows the mutable reference.
-
-The source explains this last-use behavior. fileciteturn0file0L213-L228
 
 ---
 
@@ -581,8 +556,6 @@ number
 
 number = 15
 ```
-
-The source identifies `*` as the dereference operator, the opposite operation of creating a reference with `&`. fileciteturn0file0L27-L29
 
 ---
 
@@ -638,8 +611,6 @@ That reference would point to data that no longer exists.
 
 Rust rejects it.
 
-The source explains that Rust guarantees references cannot become dangling references and shows this exact type of invalid code. fileciteturn0file0L232-L301
-
 ---
 
 # 19. Correct Way: Return the String
@@ -666,8 +637,6 @@ Output:
 hello
 ```
 
-The String is returned by value, so ownership moves to the caller and the value remains valid. fileciteturn0file0L303-L313
-
 ---
 
 # 20. The Two Most Important Borrowing Rules
@@ -693,8 +662,6 @@ RULE 2
 
 References must always be valid.
 ```
-
-The source summarizes these as the core rules of references. fileciteturn0file0L315-L320
 
 ---
 
